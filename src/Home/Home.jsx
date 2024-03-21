@@ -1,22 +1,10 @@
 import "./Home.css"
-import {inventario} from "../utils/medicamentos"
+
+import basedatos from "../utils/basedatos.json"
 
 export function Home(){
-    //Zona de manipulacion de Datos
-    let nombrePaciente = "Felipe Gómez"
-    let sedePaciente = "Suramericana"
-    let nombreMedico = "Pablo Perez"
-    console.log(inventario)
 
-    //A los arreglos los puedo manipular para controlar que informacion voy a presentar
-
-    //1. Funcion de filtrado de datos
-    //condicion de filtrado(pregunta(si/no))
-    let resultado = inventario.filter(function(auxiliar){
-        return(auxiliar.nombre=="Acetaminofen")
-    })
-
-    console.log(resultado)
+    console.log(basedatos[0])
 
     return(//Zona de renderizado
         <>
@@ -27,7 +15,7 @@ export function Home(){
                             Servicios a un clic
                         </h3>
                         <h2 className="text-muted">
-                            Hola, <span className="fuente">{nombrePaciente}</span>
+                            Hola, {basedatos[0].nombreUsuario} <span className="fuente"></span>
                         </h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste doloribus saepe obcaecati possimus laudantium laborum soluta dicta quasi corrupti sunt libero aliquid magnam, molestiae voluptates repellat minus nemo mollitia nostrum. Odit iusto minima sunt vel? Blanditiis laudantium illum illo, veniam optio rerum enim reiciendis soluta, minus vitae quam ducimus exercitationem.
                         </p>
@@ -47,7 +35,7 @@ export function Home(){
                             <div className="col-12 col-md-10 mt-3">
                                 <br />
                                 <p>MÉDICO FAMILIAR</p>
-                                <p className="fuente">{nombreMedico}</p>
+                                <p className="fuente">{basedatos[0].medicoDeFamilia}</p>
                             </div>
                         </div>
                         <div className="row">
@@ -57,6 +45,7 @@ export function Home(){
                             <div className="col-12 col-md-10 mt-3">
                                 <br />
                                 <p>TIPO AFILIADO</p>
+                                <p>{basedatos[0].grupoDeIngreso}</p>
                             </div>
                         </div>
                         <div className="row">
@@ -75,9 +64,33 @@ export function Home(){
                             <div className="col-12 col-md-10 mt-3">
                                 <br />
                                 <p>IPS ACTUAL</p>
+                                <p>{basedatos[0].ips}</p>
                             </div>
                         </div>
                     </div>
+                </div>
+            </section>
+            <hr />
+            <section className="container my-5">
+                <div className="row">
+                    <div className="col12 col-md-5">
+                        <h2>Citas Médicas</h2>
+                    </div>
+                </div>
+            </section>
+            <section className="container">
+                <div className="row row-cols-1 row-cols-md-3">
+                    {basedatos[0].citasMedicas.map(function(citas){
+                        return(
+                            <div className="col">
+                                <div className="card h-100 shadow px-2">
+                                    <h3>{citas.especialidad}</h3>
+                                    <h4><p className="bi bi-calendar-check"></p> {citas.fecha}</h4>
+                                    <h4>Dirección: {citas.direccion}</h4>
+                                </div>
+                            </div>
+                        )
+                    })}
                 </div>
             </section>
         </>
