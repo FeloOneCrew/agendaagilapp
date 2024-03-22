@@ -85,7 +85,7 @@ export function Home(){
                             <div className="col">
                                 <div className="card h-100 shadow px-2">
                                     <h3>{citas.especialidad}</h3>
-                                    <h4><p className="bi bi-calendar-check"></p> {citas.fecha}</h4>
+                                    <h4><i className="bi bi-calendar-check"></i> {citas.fecha}</h4>
                                     <h4>Dirección: {citas.direccion}</h4>
                                 </div>
                             </div>
