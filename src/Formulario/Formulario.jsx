@@ -1,16 +1,23 @@
 import './Formulario.css'
 
 import {useState} from 'react' //Para crear variables de estado dentro del componente
+import { useNavigate } from 'react-router-dom'
 
 
 export function Formulario(){
 
     const[verCedula, guardarCedula] = useState("")
     const[verPassword, guardarPassword] = useState("")
+
+    //Para navegar entre componentes, debo declarar una variable
+    //que almacene el hook
+    let enrutador = useNavigate()
     
     function procesarFormulario(evento){
         evento.preventDefault()
-        console.log("Le hicieron clic al boton del formulario")
+
+        //Voy a enrutar otro componente(¿Como lanzo un componente desde cero?)
+        enrutador("/home")
     }
 
     return(
